@@ -1,5 +1,5 @@
 import React from 'react';
-import {IconButton, InputAdornment, OutlinedInput, Stack, Typography} from "@mui/material";
+import {Button, IconButton, InputAdornment, OutlinedInput, Stack, Typography} from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import './LandingPageStyles.css';
@@ -7,6 +7,7 @@ import './LandingPageStyles.css';
 function LandingPage() {
 
     const [values, setValues] = React.useState({
+        login: true,
         username: '',
         password: '',
         showPassword: false,
@@ -26,6 +27,13 @@ function LandingPage() {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
+
+    const handleUserType = (event) => {
+        setValues({
+            ...values,
+            login: !values.login
+        })
+    }
 
     return (
         <div className="landing-page-div">
@@ -59,6 +67,14 @@ function LandingPage() {
                         </InputAdornment>
                     }
                 />
+                <Stack direction={"row"} spacing={2}>
+                    <Button variant={"contained"}>
+                        {values.login ? "Login" : "Sign Up"}
+                    </Button>
+                    <Button variant={"outlined"} onClick={handleUserType}>
+                        {values.login ? "Not a user?" : "Already a user?"}
+                    </Button>
+                </Stack>
             </Stack>
         </div>
     );
