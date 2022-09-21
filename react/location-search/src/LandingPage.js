@@ -3,6 +3,7 @@ import {Button, IconButton, InputAdornment, OutlinedInput, Stack, Typography} fr
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import './LandingPageStyles.css';
+import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
 
@@ -33,6 +34,12 @@ function LandingPage() {
             ...values,
             login: !values.login
         })
+    }
+
+    const navigate = useNavigate();
+
+    const navigateToLandingPageLogin = () => {
+        navigate("./user");
     }
 
     return (
@@ -68,7 +75,7 @@ function LandingPage() {
                     }
                 />
                 <Stack direction={"row"} spacing={2}>
-                    <Button variant={"contained"}>
+                    <Button variant={"contained"} onClick={values.login ? navigateToLandingPageLogin : undefined}>
                         {values.login ? "Login" : "Sign Up"}
                     </Button>
                     <Button variant={"outlined"} onClick={handleUserType}>
