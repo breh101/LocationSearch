@@ -21,9 +21,11 @@ function UserPage() {
             <div className="user-page-div">
                 <Stack direction={"column"} spacing={2}>
                     <Stack direction={"row"} spacing={24}>
+                        <Typography>OLD</Typography>
                         <Typography>Latitude</Typography>
                         <Typography>Longitude</Typography>
                         <Typography>Search Radius</Typography>
+                        <Typography>OLD</Typography>
                     </Stack>
                     <Stack direction={"row"} spacing={4}>
                         <OutlinedInput
@@ -59,7 +61,6 @@ function UserPage() {
                     <Table/>
                 </Stack>
                 <MapContainer/>
-                <Button>Log Out</Button>
             </div>
         </div>
     );
