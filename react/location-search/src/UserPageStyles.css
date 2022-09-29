@@ -1,0 +1,13 @@
+.user-page-div {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    margin: 5em;
+    flex-direction: row;
+}
+
+.bottom-half-div {
+    flex-direction: row;
+    display: flex;
+    margin: 5em;
+}
