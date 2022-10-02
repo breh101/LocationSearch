@@ -42,8 +42,28 @@ public class Place {
             return null;
         }
 
-        JSONObject json_data = new JSONObject(data);
+        JSONObject json_data = new JSONObject(data).getJSONObject("result");
 
-        return json_data.toString();
+        JSONObject result = new JSONObject();
+        try {
+            result.put("name", json_data.getString("name"));
+            result.put("address", json_data.getString("formatted_address"));
+            result.put("location", json_data.getJSONObject("geometry").getJSONObject("location"));
+            result.put("url", json_data.getString("url"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            result.put("website", json_data.getString("website"));
+        } catch (JSONException e) {}
+        try {
+            result.put("phone", json_data.getString("international_phone_number"));
+        } catch (JSONException e) {}
+        try {
+            result.put("rating", json_data.getDouble("rating"));
+        } catch (JSONException e) {}
+
+        return result.toString();
     }
 }
