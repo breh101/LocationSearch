@@ -1,3 +1,9 @@
+.menu-div{
+    position: absolute;
+    top:70px;
+    left: 70px;
+}
+
 .user-page-div {
     text-align: center;
     justify-content: center;
@@ -5,6 +11,8 @@
     margin: 5em;
     flex-direction: row;
 }
+
+
 
 .bottom-half-div {
     flex-direction: row;
