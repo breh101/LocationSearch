@@ -1,0 +1,152 @@
+Index: spring-boot/src/main/java/com/cs3300/LocationSearch/CurrentLocation.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.cs3300.LocationSearch;\r\n\r\nimport java.io.IOException;\r\nimport java.net.HttpURLConnection;\r\nimport java.net.MalformedURLException;\r\nimport java.net.URL;\r\nimport java.util.Scanner;\r\n\r\npublic class CurrentLocation {\r\n    //Establishes URL Connection with support for HTTP - specific features\r\n    private static HttpURLConnection connection;\r\n\r\n    private static String parseAddress(String address) {\r\n        Scanner addr = new Scanner(address);\r\n        String parsedAddr = \"\";\r\n        while (addr.hasNext()) {\r\n            parsedAddr += addr + \"%20\";\r\n        }\r\n        addr.close();\r\n        return parsedAddr;\r\n    }\r\n    public static void main(String[] args) {\r\n        System.out.println(parseAddress(\"3963 Otter Dam Ct Atlanta GA\"));\r\n        try {\r\n            URL url = new URL(\"https://maps.googleapis.com/maps/api/geocode/json?address=3963%20Otter%20Dam%20Court%20Atlanta%20GA&key=AIzaSyCeePqOFdkdcpqIwBzdgxsA9Y55WxVTXWI\");\r\n            connection = (HttpURLConnection) url.openConnection();\r\n\r\n            //request setup\r\n            connection.setRequestMethod(\"GET\");\r\n            connection.setConnectTimeout(5000);\r\n            connection.getReadTimeout();\r\n\r\n            int status = connection.getResponseCode();\r\n            System.out.println(status);\r\n            \r\n        } catch (MalformedURLException e) {\r\n            e.printStackTrace();\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n        \r\n    }\r\n}\r\n
+===================================================================
+diff --git a/spring-boot/src/main/java/com/cs3300/LocationSearch/CurrentLocation.java b/spring-boot/src/main/java/com/cs3300/LocationSearch/CurrentLocation.java
+--- a/spring-boot/src/main/java/com/cs3300/LocationSearch/CurrentLocation.java	
++++ b/spring-boot/src/main/java/com/cs3300/LocationSearch/CurrentLocation.java	
+@@ -1,43 +1,95 @@
+ package com.cs3300.LocationSearch;
+ 
++import java.io.BufferedReader;
+ import java.io.IOException;
++import java.io.InputStreamReader;
+ import java.net.HttpURLConnection;
+ import java.net.MalformedURLException;
+ import java.net.URL;
+ import java.util.Scanner;
++import org.json.simple.JSONArray;
++import org.json.simple.JSONObject;
++import org.json.simple.parser.JSONParser;
++import org.json.simple.parser.ParseException;
++import org.springframework.web.bind.annotation.RequestMapping;
++import org.springframework.web.bind.annotation.RequestMethod;
++import org.springframework.web.bind.annotation.RequestParam;
++import org.springframework.web.bind.annotation.ResponseBody;
+ 
+ public class CurrentLocation {
+     //Establishes URL Connection with support for HTTP - specific features
+     private static HttpURLConnection connection;
+-
+-    private static String parseAddress(String address) {
++    //gets address query param for URL
++    @RequestMapping(value="json", method = RequestMethod.GET)
++    public @ResponseBody Double[] addressToLatLng(@RequestParam("address") String address) {
++        //parses the address to place into the URL
+         Scanner addr = new Scanner(address);
+         String parsedAddr = "";
+-        while (addr.hasNext()) {
+-            parsedAddr += addr + "%20";
++        String[] split = address.split(" ");
++        for(String word : split) {
++            parsedAddr += (word + "%20");
+         }
+-        addr.close();
+-        return parsedAddr;
+-    }
+-    public static void main(String[] args) {
+-        System.out.println(parseAddress("3963 Otter Dam Ct Atlanta GA"));
++
++        //request for HTTP setup
++        BufferedReader reader;
++        String line;
++        StringBuffer responseContent = new StringBuffer();
+         try {
+-            URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=3963%20Otter%20Dam%20Court%20Atlanta%20GA&key=AIzaSyCeePqOFdkdcpqIwBzdgxsA9Y55WxVTXWI");
++            //setting up URL connection
++            URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + parsedAddr + "&key=AIzaSyCeePqOFdkdcpqIwBzdgxsA9Y55WxVTXWI");
+             connection = (HttpURLConnection) url.openConnection();
+-
+-            //request setup
+             connection.setRequestMethod("GET");
+             connection.setConnectTimeout(5000);
+             connection.getReadTimeout();
+-
++            //handles if status is OK or not
+             int status = connection.getResponseCode();
+-            System.out.println(status);
+-            
++            if (status > 299) {
++                //status is not within 200 range, get ErrorStream
++                reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
++                while((line = reader.readLine()) != null) {
++                    responseContent.append(line);
++                }
++                reader.close();
++            } else {
++                //status is within 200 range, get InputStream
++                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
++                while((line = reader.readLine()) != null) {
++                    responseContent.append(line);
++                }
++                reader.close();
++            }
+         } catch (MalformedURLException e) {
+             e.printStackTrace();
+         } catch (IOException e) {
+             e.printStackTrace();
++        } finally {
++            connection.disconnect();
+         }
+-        
++        return getLatLng(responseContent.toString());
++    }
++
++    //gets latitude and longitude based on address
++    private Double[] getLatLng(String responseBody) {
++        try {
++            //parsing responseBody by casting JSONParser object to JSONObject
++            JSONParser parser = new JSONParser();
++            JSONObject location = (JSONObject) parser.parse(responseBody);
++            //gets first element (results array)
++            JSONArray latLng = (JSONArray) location.get("results");
++            String local = latLng.toString();
++            //gets location: lat,lng part of string
++            String foundLocal = local.substring(local.indexOf("location"), local.indexOf("location_type"));
++            String longitudeString = foundLocal.substring(foundLocal.indexOf("lng") + 5, foundLocal.indexOf(","));
++            String latitudeString = foundLocal.substring(foundLocal.indexOf("lat") + 5, foundLocal.indexOf("}"));
++            //converts string numbers to doubles
++            Double latitude = Double.parseDouble(latitudeString);
++            Double longitude = Double.parseDouble(longitudeString);
++            //places lat,lng values in array to be returned
++            Double[] latLngArray = {latitude, longitude};
++            return latLngArray;
++        } catch (ParseException pe) {
++            pe.printStackTrace();
++        }
++        return null;
+     }
+ }
+Index: .idea/LocationSearch.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"JAVA_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\r\n    <exclude-output />\r\n    <content url=\"file://$MODULE_DIR$\" />\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+===================================================================
+diff --git a/.idea/LocationSearch.iml b/.idea/LocationSearch.iml
+--- a/.idea/LocationSearch.iml	
++++ b/.idea/LocationSearch.iml	
+@@ -1,9 +1,21 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <module type="JAVA_MODULE" version="4">
++  <component name="CheckStyle-IDEA-Module" serialisationVersion="2">
++    <option name="activeLocationsIds" />
++  </component>
+   <component name="NewModuleRootManager" inherit-compiler-output="true">
+     <exclude-output />
+     <content url="file://$MODULE_DIR$" />
+-    <orderEntry type="inheritedJdk" />
++    <orderEntry type="jdk" jdkName="openjdk-19" jdkType="JavaSDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="module-library">
++      <library>
++        <CLASSES>
++          <root url="jar://$MODULE_DIR$/spring-boot/lib/json-simple-1.1.jar!/" />
++        </CLASSES>
++        <JAVADOC />
++        <SOURCES />
++      </library>
++    </orderEntry>
+   </component>
+ </module>
+\ No newline at end of file

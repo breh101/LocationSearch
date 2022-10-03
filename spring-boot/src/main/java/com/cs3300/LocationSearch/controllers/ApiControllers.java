@@ -24,11 +24,20 @@ public class ApiControllers {
     public String getPage() {
         return "Welcome";
     }
+
     //get/read method
     @GetMapping(value = "/users")
     public List<User> getUsers() {
         return userRepo.findAll();
     }
+
+    //get by id method
+    @GetMapping("/users/{id}")
+    public String getUserById(@PathVariable long id) {
+        User user = userRepo.findById(id).get();
+        return "User: " + user + " has been found.";
+    }
+
     //post/create method
     @PostMapping(value = "/save")
     public String saveUser(@RequestBody User user) {
