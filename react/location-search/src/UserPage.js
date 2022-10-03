@@ -1,5 +1,5 @@
-import React from 'react';
-import {Button, OutlinedInput, Stack, Typography} from "@mui/material";
+import * as React from 'react';
+import {Button, OutlinedInput, Stack, Typography, Menu, MenuItem} from "@mui/material";
 import './UserPageStyles.css';
 import Table from "./Table"
 import MapContainer from "./MapContainer"
@@ -16,9 +16,49 @@ function UserPage() {
         setValues({ ...values, [prop]: event.target.value });
     };
 
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+
     return (
         <div>
+            <div className="menu-div">
+                <Button
+                    id="demo-positioned-button"
+                    aria-controls={open ? 'demo-positioned-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={handleClick}
+                    >
+                       Menu
+                </Button>
+                <Menu
+                    id="demo-positioned-menu"
+                    aria-labelledby="demo-positioned-button"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                >
+                <MenuItem onClick={handleClose}>Saved Location</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                </Menu>
+            </div>
             <div className="user-page-div">
+
                 <Stack direction={"column"} spacing={2}>
                     <Stack direction={"row"} spacing={24}>
                         <Typography>OLD</Typography>
