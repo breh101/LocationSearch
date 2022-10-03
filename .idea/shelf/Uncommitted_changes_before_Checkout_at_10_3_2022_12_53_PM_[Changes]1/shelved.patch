@@ -1,0 +1,41 @@
+Index: spring-boot/src/main/java/com/cs3300/LocationSearch/entities/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.cs3300.LocationSearch.entities;\r\n\r\nimport javax.persistence.Entity;\r\nimport javax.persistence.GeneratedValue;\r\nimport javax.persistence.Id;\r\nimport java.util.Objects;\r\n\r\n@Entity\r\npublic class User {\r\n    private @Id\r\n    @GeneratedValue Long id;\r\n    private String firstName;\r\n    private String lastName;\r\n    private String description;\r\n\r\n    private User() {}\r\n\r\n    public User(String firstName, String lastName) {\r\n        this.firstName = firstName;\r\n        this.lastName = lastName;\r\n    }\r\n\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (o == null || getClass() != o.getClass()) return false;\r\n        User employee = (User) o;\r\n        return Objects.equals(id, employee.id) &&\r\n                Objects.equals(firstName, employee.firstName) &&\r\n                Objects.equals(lastName, employee.lastName) &&\r\n                Objects.equals(description, employee.description);\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n\r\n        return Objects.hash(id, firstName, lastName, description);\r\n    }\r\n\r\n    public Long getId() {\r\n        return id;\r\n    }\r\n\r\n    public void setId(Long id) {\r\n        this.id = id;\r\n    }\r\n\r\n    public String getFirstName() {\r\n        return firstName;\r\n    }\r\n\r\n    public void setFirstName(String firstName) {\r\n        this.firstName = firstName;\r\n    }\r\n\r\n    public String getLastName() {\r\n        return lastName;\r\n    }\r\n\r\n    public void setLastName(String lastName) {\r\n        this.lastName = lastName;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/spring-boot/src/main/java/com/cs3300/LocationSearch/entities/User.java b/spring-boot/src/main/java/com/cs3300/LocationSearch/entities/User.java
+--- a/spring-boot/src/main/java/com/cs3300/LocationSearch/entities/User.java	
++++ b/spring-boot/src/main/java/com/cs3300/LocationSearch/entities/User.java	
+@@ -20,7 +20,6 @@
+         this.lastName = lastName;
+     }
+ 
+-
+     @Override
+     public boolean equals(Object o) {
+         if (this == o) return true;
+Index: spring-boot/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n\txsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n\t<modelVersion>4.0.0</modelVersion>\r\n\t<parent>\r\n\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t<artifactId>spring-boot-starter-parent</artifactId>\r\n\t\t<version>2.6.11</version>\r\n\t\t<relativePath/> <!-- lookup parent from repository -->\r\n\t</parent>\r\n\t<groupId>com.cs3300</groupId>\r\n\t<artifactId>LocationSearch</artifactId>\r\n\t<version>0.0.1-SNAPSHOT</version>\r\n\t<packaging>war</packaging>\r\n\t<name>LocationSearch</name>\r\n\t<description>CS3300 Project 1</description>\r\n\t<properties>\r\n\t\t<java.version>17</java.version>\r\n\t</properties>\r\n\t<dependencies>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t<artifactId>spring-boot-starter-data-jpa</artifactId>\r\n\t\t</dependency>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t<artifactId>spring-boot-starter-jdbc</artifactId>\r\n\t\t</dependency>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t<artifactId>spring-boot-starter-security</artifactId>\r\n\t\t</dependency>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t<artifactId>spring-boot-starter-thymeleaf</artifactId>\r\n\t\t</dependency>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t<artifactId>spring-boot-starter-web</artifactId>\r\n\t\t</dependency>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.thymeleaf.extras</groupId>\r\n\t\t\t<artifactId>thymeleaf-extras-springsecurity5</artifactId>\r\n\t\t</dependency>\r\n\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.projectlombok</groupId>\r\n\t\t\t<artifactId>lombok</artifactId>\r\n\t\t\t<optional>true</optional>\r\n\t\t</dependency>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t<artifactId>spring-boot-starter-tomcat</artifactId>\r\n\t\t\t<scope>provided</scope>\r\n\t\t</dependency>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t<artifactId>spring-boot-starter-test</artifactId>\r\n\t\t\t<scope>test</scope>\r\n\t\t</dependency>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springframework.security</groupId>\r\n\t\t\t<artifactId>spring-security-test</artifactId>\r\n\t\t\t<scope>test</scope>\r\n\t\t</dependency>\r\n\t\t<dependency>\r\n\t\t\t<groupId>com.google.cloud</groupId>\r\n\t\t\t<artifactId>google-cloud-firestore</artifactId>\r\n\t\t\t<version>3.4.2</version>\r\n\t\t</dependency>\r\n\t</dependencies>\r\n\r\n\t<build>\r\n\t\t<plugins>\r\n\t\t\t<plugin>\r\n\t\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t\t<artifactId>spring-boot-maven-plugin</artifactId>\r\n\t\t\t\t<version>2.6.11</version>\r\n\t\t\t\t<configuration>\r\n\t\t\t\t\t<excludes>\r\n\t\t\t\t\t\t<exclude>\r\n\t\t\t\t\t\t\t<groupId>org.projectlombok</groupId>\r\n\t\t\t\t\t\t\t<artifactId>lombok</artifactId>\r\n\t\t\t\t\t\t</exclude>\r\n\t\t\t\t\t</excludes>\r\n\t\t\t\t</configuration>\r\n\t\t\t</plugin>\r\n\t\t</plugins>\r\n\t</build>\r\n\r\n</project>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/spring-boot/pom.xml b/spring-boot/pom.xml
+--- a/spring-boot/pom.xml	
++++ b/spring-boot/pom.xml	
+@@ -18,6 +18,12 @@
+ 		<java.version>17</java.version>
+ 	</properties>
+ 	<dependencies>
++		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
++		<dependency>
++			<groupId>com.googlecode.json-simple</groupId>
++			<artifactId>json-simple</artifactId>
++			<version>1.1.1</version>
++		</dependency>
+ 		<dependency>
+ 			<groupId>org.springframework.boot</groupId>
+ 			<artifactId>spring-boot-starter-data-jpa</artifactId>
