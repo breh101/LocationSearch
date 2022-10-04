@@ -1,11 +1,13 @@
 package com.cs3300.LocationSearch.entities;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Objects;
 
-@Entity
+@Document("users")
 public class User {
     //User instances
     private @Id
