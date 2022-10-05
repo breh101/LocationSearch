@@ -1,19 +1,22 @@
 package com.cs3300.LocationSearch.entities;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Objects;
 
-@Entity
+@Document("users")
 public class User {
+    //User instances
     private @Id
     @GeneratedValue Long id;
     private String firstName;
     private String lastName;
-    private String description;
 
-    private User() {}
+    //User constructors
+    public User(){}
 
     public User(String firstName, String lastName) {
         this.firstName = firstName;
@@ -28,22 +31,17 @@ public class User {
         User employee = (User) o;
         return Objects.equals(id, employee.id) &&
                 Objects.equals(firstName, employee.firstName) &&
-                Objects.equals(lastName, employee.lastName) &&
-                Objects.equals(description, employee.description);
+                Objects.equals(lastName, employee.lastName);
     }
-
+//id generator
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, firstName, lastName, description);
+        return Objects.hash(id, firstName, lastName);
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {

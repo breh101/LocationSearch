@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from "axios";
 import {Button, OutlinedInput, Stack, Typography} from "@mui/material";
 import './UserPageStyles.css';
 import Table from "./Table"
@@ -12,20 +13,39 @@ function UserPage() {
         searchRadius: 0,
     });
 
+    const [places, setPlaces] = React.useState([]);
+    const [ids, setIds] = React.useState([]);
+
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
+
+    function getPlaces(lat, lng, rad){
+        //Using localhost for now for testing sake. Will change to actual url when finished.
+        setPlaces([]);
+        axios.get(`http://localhost:8080/places?lat=${lat}&lng=${lng}&rad=${rad}`)
+            .then(function (response) {
+                setIds(response.data);
+                for(let x = 0; x<ids.length; x++){
+                    axios.get(`http://localhost:8080/place?place_id=${ids[x]}`)
+                        .then(secondResponse => {
+                            if(!places.includes(secondResponse.data.name)){
+                                places.push(secondResponse.data);
+                                setPlaces(places);
+                            }
+                        })
+                }
+            });
+    }
 
     return (
         <div>
             <div className="user-page-div">
                 <Stack direction={"column"} spacing={2}>
                     <Stack direction={"row"} spacing={24}>
-                        <Typography>OLD</Typography>
                         <Typography>Latitude</Typography>
                         <Typography>Longitude</Typography>
                         <Typography>Search Radius</Typography>
-                        <Typography>OLD</Typography>
                     </Stack>
                     <Stack direction={"row"} spacing={4}>
                         <OutlinedInput
@@ -47,7 +67,7 @@ function UserPage() {
                             onChange={handleChange('searchRadius')}
                         />
                     </Stack>
-                    <Button variant={"contained"} fullWidth={false}>
+                    <Button variant={"contained"} fullWidth={false} onClick={() => getPlaces(values.latitude, values.longitude, values.searchRadius)}>
                         Find Places
                     </Button>
                 </Stack>
@@ -58,7 +78,7 @@ function UserPage() {
                     spacing={2}
                 >
                     <Typography>Search results</Typography>
-                    <Table/>
+                    <Table places={places}/>
                 </Stack>
                 <MapContainer/>
             </div>
