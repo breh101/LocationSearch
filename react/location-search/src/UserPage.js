@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from "axios";
 import {Button, OutlinedInput, Stack, Typography} from "@mui/material";
 import './UserPageStyles.css';
 import Table from "./Table"
@@ -12,9 +13,23 @@ function UserPage() {
         searchRadius: 0,
     });
 
+    const [places, setPlaces] = React.useState([]);
+
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
+
+    function getPlaces(){
+        //Using localhost for now for testing sake. Will change to actual url when finished.
+        axios.get('http://localhost:8080/places?lat=' + values.latitude + "&lng=" + values.longitude + "&rad=" + values.searchRadius, {
+            method: 'GET'
+        })
+            .then(response => response.json())
+            .then((jsonData) => {
+                console.log(jsonData);
+                setPlaces(jsonData);
+            })
+    }
 
     return (
         <div>
@@ -47,7 +62,7 @@ function UserPage() {
                             onChange={handleChange('searchRadius')}
                         />
                     </Stack>
-                    <Button variant={"contained"} fullWidth={false}>
+                    <Button variant={"contained"} fullWidth={false} onClick={getPlaces()}>
                         Find Places
                     </Button>
                 </Stack>

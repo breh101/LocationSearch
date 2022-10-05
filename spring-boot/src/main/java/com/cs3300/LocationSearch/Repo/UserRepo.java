@@ -1,9 +1,10 @@
 package com.cs3300.LocationSearch.Repo;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.cs3300.LocationSearch.entities.User;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Service;
 
-public interface UserRepo extends JpaRepository<User, Long>{
-    
+
+@Service
+public interface UserRepo extends MongoRepository<User, Long> {
 }
