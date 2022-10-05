@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from "axios";
 import {Button, OutlinedInput, Stack, Typography} from "@mui/material";
 import './UserPageStyles.css';
 import Table from "./Table"
@@ -20,7 +21,9 @@ function UserPage() {
 
     function getPlaces(){
         //Using localhost for now for testing sake. Will change to actual url when finished.
-        fetch('http://localhost:8080/places?lat=' + values.latitude + "?lng=" + values.longitude + "?rad=" + values.searchRadius, { method: 'GET'})
+        axios.get('http://localhost:8080/places?lat=' + values.latitude + "&lng=" + values.longitude + "&rad=" + values.searchRadius, {
+            method: 'GET'
+        })
             .then(response => response.json())
             .then((jsonData) => {
                 console.log(jsonData);

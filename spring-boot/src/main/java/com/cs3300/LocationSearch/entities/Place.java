@@ -1,9 +1,6 @@
 package com.cs3300.LocationSearch.entities;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -19,8 +16,10 @@ import java.util.Arrays;
 
 import java.io.IOException;
 
+@CrossOrigin
 @RestController
 public class Place {
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value="/place", method = RequestMethod.GET, produces="application/json")
     public String getPlace(@RequestParam(value="place_id") String place_id) {
         String key = "AIzaSyCeePqOFdkdcpqIwBzdgxsA9Y55WxVTXWI";

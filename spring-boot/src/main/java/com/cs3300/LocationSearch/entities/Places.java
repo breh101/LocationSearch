@@ -1,9 +1,6 @@
 package com.cs3300.LocationSearch.entities;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -19,6 +16,7 @@ import java.util.Arrays;
 
 import java.io.IOException;
 
+@CrossOrigin
 @RestController
 public class Places {
     public List<String> UNSUPPORTED_TYPES = Arrays.asList(
@@ -100,7 +98,6 @@ public class Places {
                 System.out.println("No types");
             }
         }
-
         String next_page_token = "";
         try {
             next_page_token = json_data.getString("next_page_token");
@@ -116,6 +113,7 @@ public class Places {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @RequestMapping(value="/places", method = RequestMethod.GET, produces="application/json")
     public String getPlaces(@RequestParam(value="lat") double lat, @RequestParam(value="lng") double lng,  @RequestParam(value="rad") double rad){
         return getPlacesRecursive(lat, lng, rad, "").toString();
