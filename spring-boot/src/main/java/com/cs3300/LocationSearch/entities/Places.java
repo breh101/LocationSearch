@@ -118,6 +118,6 @@ public class Places {
 
     @RequestMapping(value="/places", method = RequestMethod.GET, produces="application/json")
     public String getPlaces(@RequestParam(value="lat") double lat, @RequestParam(value="lng") double lng,  @RequestParam(value="rad") double rad){
-        return getPlacesRecursive(lat, lng, rad, "").toString();
+        return getPlacesRecursive(lat, lng, rad * 1609.34, "").toString();
     }
 }
