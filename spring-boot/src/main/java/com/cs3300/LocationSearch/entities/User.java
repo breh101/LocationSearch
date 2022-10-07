@@ -14,13 +14,15 @@ public class User {
     @GeneratedValue Long id;
     private String firstName;
     private String lastName;
+    private String password;
 
     //User constructors
     public User(){}
 
-    public User(String firstName, String lastName) {
+    public User(String firstName, String lastName, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.password = password;
     }
 
 
@@ -31,13 +33,14 @@ public class User {
         User employee = (User) o;
         return Objects.equals(id, employee.id) &&
                 Objects.equals(firstName, employee.firstName) &&
-                Objects.equals(lastName, employee.lastName);
+                Objects.equals(lastName, employee.lastName) &&
+                Objects.equals(password, employee.password);
     }
 //id generator
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, firstName, lastName);
+        return Objects.hash(id, firstName, lastName, password);
     }
 
     public Long getId() {
@@ -59,4 +62,8 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
 }

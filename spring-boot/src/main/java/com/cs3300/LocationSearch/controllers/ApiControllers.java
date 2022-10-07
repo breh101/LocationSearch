@@ -39,8 +39,8 @@ public class ApiControllers {
     //post/create method
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/create")
-    public String createUser(@RequestParam String firstName, @RequestParam String lastName) {
-        User toSave = new User(firstName, lastName);
+    public String createUser(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String password) {
+        User toSave = new User(firstName, lastName, password);
         userRepo.save(toSave);
         return "User with name " + toSave.getFirstName() + " has been added.";
     }
@@ -61,6 +61,7 @@ public class ApiControllers {
         User updatedUser = userRepo.findById(id).get();
         updatedUser.setFirstName(user.getFirstName());
         updatedUser.setLastName(user.getLastName());
+        updatedUser.setPassword(user.getPassword());
         userRepo.save(updatedUser);
         return "User with " + user.getId() + "has been updated.";
     }
