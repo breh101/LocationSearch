@@ -2,8 +2,6 @@ package com.cs3300.LocationSearch.entities;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Objects;
 
@@ -69,4 +67,12 @@ public class User {
     public String getPassword() { return password; }
 
     public void setPassword(String password) { this.password = password; }
+
+    @Override
+    public String toString() {
+        return "Username: " + this.username + "\n" +
+        "First name: "  + this.firstName + "\n" +
+        "Last name: " + this.lastName + "\n" +
+        "Password: " + this.password;
+    }
 }

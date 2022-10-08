@@ -33,16 +33,22 @@ public class ApiControllers {
     @GetMapping("/users/{username}")
     public String getUserByUsername(@PathVariable String username) {
         User user = userRepo.findById(User.getIdFromUsername(username)).get();
-        return "User: " + user.getUsername() + " has been found.";
+        return user.toString();
     }
 
     //post/create method
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/create")
-    public String createUser(@RequestParam String username, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String password) {
+    public String createUser(@RequestParam String username, @RequestParam String firstName, 
+    @RequestParam String lastName, @RequestParam String password) {
         User toSave = new User(username, firstName, lastName, password);
+        if (userRepo.findAll().contains(toSave)) {
+            toSave = userRepo.findById(User.getIdFromUsername(username)).get();
+            userRepo.save(toSave);
+            return "User with username " + username + " already exists.";
+        }
         userRepo.save(toSave);
-        return "User with name " + toSave.getFirstName() + " has been added.";
+        return "User with username " + username + " has been added.";
     }
 
     //delete method
@@ -51,19 +57,17 @@ public class ApiControllers {
     public String deleteUser(@PathVariable String username) {
         User deleteUser = userRepo.findById(User.getIdFromUsername(username)).get();
         userRepo.delete(deleteUser);
-        return "User with id " + username + " has been deleted.";
+        return "User with username " + username + " has been deleted.";
     }
 
     //update/put method
     @CrossOrigin(origins = "http://localhost:3000")
-    @PutMapping(value = "/update/{username}")
+    @PatchMapping(value = "/update/{username}")
     public String updateUser(@RequestBody User user, @PathVariable String username) {
         User updatedUser = userRepo.findById(User.getIdFromUsername(username)).get();
-        updatedUser.setFirstName(user.getFirstName());
-        updatedUser.setLastName(user.getLastName());
         updatedUser.setPassword(user.getPassword());
         userRepo.save(updatedUser);
-        return "User with username " + user.getUsername() + "has been updated.";
+        return "User with username " + username + " has been updated.";
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
