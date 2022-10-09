@@ -7,12 +7,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import org.json.JSONObject;
-import org.json.JSONArray;
 import org.json.JSONException;
-
-import java.util.List;
-import java.util.Vector;
-import java.util.Arrays;
 
 import java.io.IOException;
 
