@@ -88,7 +88,37 @@ function LandingPage() {
     }
 
     const handleSignUp = () => {
-
+        if (values.username.length > 0 && values.password.length > 0) {
+            axios.get(`http://localhost:8080/users/${values.username}`)
+                .then(function (response) {
+                    console.log(response.data);
+                    if (response.data.length == 0) { // username does not exist
+                        axios.post(`http://localhost:8080/create/?username=${values.username}&password=${values.password}`)
+                            .then(function (response) {
+                                console.log(response.data);
+                                setValues({
+                                    ...values,
+                                    loginValid: true
+                                });
+                                navigateToLandingPageLogin();
+                            })
+                    } else {
+                        setValues({
+                            ...values,
+                            loginValid: false,
+                            usernameError: "Username already exists",
+                            passwordError: undefined
+                        });
+                    }
+                });
+        } else {
+            setValues({
+                ...values,
+                loginValid: false,
+                usernameError: (values.username.length == 0) ? "Empty username" : undefined,
+                passwordError: (values.password.length == 0) ? "Empty password" : undefined
+            });
+        }
     }
 
     return (
@@ -130,7 +160,7 @@ function LandingPage() {
                     helperText={values.loginValid ? undefined : values.passwordError}
                 />
                 <Stack direction={"row"} spacing={2}>
-                    <Button variant={"contained"} onClick={values.login ? handleLogin : undefined}>
+                    <Button variant={"contained"} onClick={values.login ? handleLogin : handleSignUp}>
                         {values.login ? "Login" : "Sign Up"}
                     </Button>
                     <Button variant={"outlined"} onClick={handleUserType}>

@@ -47,11 +47,6 @@ public class ApiControllers {
     public String createUser(@RequestParam String username, @RequestParam(defaultValue = "") String firstName,
     @RequestParam(defaultValue = "") String lastName, @RequestParam String password) {
         User toSave = new User(username, firstName, lastName, password);
-        if (userRepo.findAll().contains(toSave)) {
-            toSave = userRepo.findById(User.getIdFromUsername(username)).get();
-            userRepo.save(toSave);
-            return "User with username " + username + " already exists.";
-        }
         userRepo.save(toSave);
         return "User with username " + username + " has been added.";
     }
