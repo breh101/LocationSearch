@@ -62,7 +62,7 @@ public class ApiControllers {
 
     //update/put method
     @CrossOrigin(origins = "http://localhost:3000")
-    @PatchMapping(value = "/update/{username}")
+    @PutMapping(value = "/update/{username}")
     public String updateUser(@RequestBody User user, @PathVariable String username) {
         User updatedUser = userRepo.findById(User.getIdFromUsername(username)).get();
         updatedUser.setPassword(user.getPassword());
