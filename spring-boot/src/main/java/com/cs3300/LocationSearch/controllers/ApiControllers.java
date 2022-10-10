@@ -16,21 +16,21 @@ public class ApiControllers {
     @Autowired
     UserRepo userRepo;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     @GetMapping(value = "/")
     public String getPage() {
         return "Welcome";
     }
 
     //get/read method
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     @GetMapping(value = "/users")
     public List<User> getUsers() {
         return userRepo.findAll();
     }
 
     //get by id method
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     @GetMapping("/users/{username}")
     public String getUserByUsername(@PathVariable String username) {
         try {
@@ -42,7 +42,7 @@ public class ApiControllers {
     }
 
     //post/create method
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     @PostMapping(value = "/create")
     public String createUser(@RequestParam String username, @RequestParam(defaultValue = "") String firstName,
     @RequestParam(defaultValue = "") String lastName, @RequestParam String password) {
@@ -52,7 +52,7 @@ public class ApiControllers {
     }
 
     //delete method
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     @DeleteMapping("/delete/{username}")
     public String deleteUser(@PathVariable String username) {
         User deleteUser = userRepo.findById(User.getIdFromUsername(username)).get();
@@ -61,7 +61,7 @@ public class ApiControllers {
     }
 
     //update/put method
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     @PutMapping(value = "/update/{username}")
     public String updateUser(@RequestBody User user, @PathVariable String username) {
         User updatedUser = userRepo.findById(User.getIdFromUsername(username)).get();
@@ -70,7 +70,7 @@ public class ApiControllers {
         return "User with username " + username + " has been updated.";
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     @GetMapping(value = "/match/")
     public boolean matchUser(@RequestParam String username, @RequestParam String password) {
         try {
