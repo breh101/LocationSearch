@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from "axios";
-import {Button, OutlinedInput, Stack, Typography} from "@mui/material";
+import {Button, OutlinedInput, Stack, Typography, Menu, MenuItem} from "@mui/material";
 import './UserPageStyles.css';
-import MapContainer from "./MapContainer"
+import {MapContainer, PopulateMarkers} from "./MapContainer";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,6 +10,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useNavigate } from "react-router-dom";
 
 function UserPage() {
 
@@ -19,6 +20,8 @@ function UserPage() {
         searchRadius: 0,
     });
 
+    const navigate = useNavigate();
+
     const [places, setPlaces] = React.useState([]);
     const [isLoading, setIsLoading] = React.useState(false);
 
@@ -26,6 +29,25 @@ function UserPage() {
         setValues({ ...values, [prop]: event.target.value });
     };
 
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleMenuClick = (event) => {
+
+      switch (event.currentTarget.innerText) {
+          case 'Logout':
+            //logout
+            navigate(-1);
+            break;
+          default:
+      }
+      setAnchorEl(null);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
     const getPlaces = async (lat, lng, rad) => {
         setIsLoading(true);
         for(let y = places.length-1; y>=0; y--){
@@ -39,6 +61,7 @@ function UserPage() {
                 places.push(secondResponse.data);
                 setPlaces(places);
             }
+            PopulateMarkers(returnedIds);
             console.log(places);
         } catch {
 
@@ -49,6 +72,34 @@ function UserPage() {
 
     return (
         <div>
+            <div className="menu-div">
+                <Button
+                    id="demo-positioned-button"
+                    aria-controls={open ? 'demo-positioned-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={handleClick}
+                    >
+                       Menu
+                </Button>
+                <Menu
+                    id="demo-positioned-menu"
+                    aria-labelledby="demo-positioned-button"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                >
+                <MenuItem onClick={handleMenuClick}>Logout</MenuItem>
+                </Menu>
+            </div>
             <div className="user-page-div">
                 <Stack direction={"column"} spacing={2}>
                     <Stack direction={"row"} spacing={24}>

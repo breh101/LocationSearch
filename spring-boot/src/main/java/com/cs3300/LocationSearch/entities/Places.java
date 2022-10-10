@@ -54,7 +54,7 @@ public class Places {
     );
 
     private JSONArray getPlacesRecursive(double lat, double lng, double rad, String page_token) {
-        String key = "AIzaSyCeePqOFdkdcpqIwBzdgxsA9Y55WxVTXWI";
+        String key = "AIzaSyBxLjV86B7Y7lh-NB1dwk_JWy0mYz4MsQM";
 
         OkHttpClient client = new OkHttpClient();
         String api_url = String.format("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=%f&key=%s", lat, lng, rad, key);
