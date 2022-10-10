@@ -112,9 +112,9 @@ public class Places {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:3000/")
+    @CrossOrigin
     @RequestMapping(value="/places", method = RequestMethod.GET, produces="application/json")
     public String getPlaces(@RequestParam(value="lat") String lat, @RequestParam(value="lng") String lng,  @RequestParam(value="rad") String rad){
-        return getPlacesRecursive(Double.parseDouble(lat), Double.parseDouble(lng), Double.parseDouble(rad), "").toString();
+        return getPlacesRecursive(Double.parseDouble(lat), Double.parseDouble(lng), Double.parseDouble(rad) * 1609, "").toString();
     }
 }

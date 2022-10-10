@@ -14,7 +14,7 @@ import java.io.IOException;
 @CrossOrigin
 @RestController
 public class Place {
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     @RequestMapping(value="/place", method = RequestMethod.GET, produces="application/json")
     public String getPlace(@RequestParam(value="place_id") String place_id) {
         String key = "AIzaSyCeePqOFdkdcpqIwBzdgxsA9Y55WxVTXWI";
