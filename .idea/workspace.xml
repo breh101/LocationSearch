@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5de0c8c9-89d1-44d3-887d-bcd73c101a1c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot/src/main/java/com/cs3300/LocationSearch/controllers/ApiControllers.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot/src/main/java/com/cs3300/LocationSearch/controllers/ApiControllers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot/src/main/java/com/cs3300/LocationSearch/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot/src/main/java/com/cs3300/LocationSearch/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/location-search/src/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/react/location-search/src/LandingPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +87,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1664585368252</updated>
-      <workItem from="1665102289232" duration="3358000" />
+      <workItem from="1665102289232" duration="8586000" />
     </task>
     <servers />
   </component>

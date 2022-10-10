@@ -1,6 +1,7 @@
 package com.cs3300.LocationSearch.controllers;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,21 +33,20 @@ public class ApiControllers {
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/users/{username}")
     public String getUserByUsername(@PathVariable String username) {
-        User user = userRepo.findById(User.getIdFromUsername(username)).get();
-        return user.toString();
+        try {
+            User user = userRepo.findById(User.getIdFromUsername(username)).get();
+            return user.toString();
+        } catch (NoSuchElementException e) {
+            return "";
+        }
     }
 
     //post/create method
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/create")
-    public String createUser(@RequestParam String username, @RequestParam String firstName, 
-    @RequestParam String lastName, @RequestParam String password) {
+    public String createUser(@RequestParam String username, @RequestParam(defaultValue = "") String firstName,
+    @RequestParam(defaultValue = "") String lastName, @RequestParam String password) {
         User toSave = new User(username, firstName, lastName, password);
-        if (userRepo.findAll().contains(toSave)) {
-            toSave = userRepo.findById(User.getIdFromUsername(username)).get();
-            userRepo.save(toSave);
-            return "User with username " + username + " already exists.";
-        }
         userRepo.save(toSave);
         return "User with username " + username + " has been added.";
     }
@@ -73,7 +73,11 @@ public class ApiControllers {
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "/match/")
     public boolean matchUser(@RequestParam String username, @RequestParam String password) {
-        User user = userRepo.findById(User.getIdFromUsername(username)).get();
-        return (user.getPassword().equals(password));
+        try {
+            User user = userRepo.findById(User.getIdFromUsername(username)).get();
+            return (user.getPassword().equals(password));
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 }
