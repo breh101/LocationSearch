@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from "axios";
-import {Button, OutlinedInput, Stack, Typography} from "@mui/material";
 import {Button, OutlinedInput, Stack, Typography, Menu, MenuItem} from "@mui/material";
 import './UserPageStyles.css';
 import Table from "./Table"
