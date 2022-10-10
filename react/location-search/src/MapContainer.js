@@ -35,4 +35,9 @@ const MapContainer = () => {
     )
 }
 
-export default MapContainer;
+const PopulateMarkers = (returnedIds) => {
+    console.log('Populated :)');
+
+}
+
+export {MapContainer, PopulateMarkers};

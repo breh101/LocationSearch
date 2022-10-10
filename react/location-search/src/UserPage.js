@@ -2,8 +2,7 @@ import React from 'react';
 import axios from "axios";
 import {Button, OutlinedInput, Stack, Typography, Menu, MenuItem} from "@mui/material";
 import './UserPageStyles.css';
-import Table from "./Table"
-import MapContainer from "./MapContainer"
+import {MapContainer, PopulateMarkers} from "./MapContainer";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,6 +10,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useNavigate } from "react-router-dom";
 
 function UserPage() {
 
@@ -19,6 +19,8 @@ function UserPage() {
         longitude: 0,
         searchRadius: 0,
     });
+
+    const navigate = useNavigate();
 
     const [places, setPlaces] = React.useState([]);
     const [isLoading, setIsLoading] = React.useState(false);
@@ -32,26 +34,20 @@ function UserPage() {
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
+    const handleMenuClick = (event) => {
+
+      switch (event.currentTarget.innerText) {
+          case 'Logout':
+            //logout
+            navigate(-1);
+            break;
+          default:
+      }
+      setAnchorEl(null);
+    };
     const handleClose = () => {
       setAnchorEl(null);
     };
-
-    function getPlaces(lat, lng, rad){
-        //Using localhost for now for testing sake. Will change to actual url when finished.
-        setPlaces([]);
-        axios.get(`http://localhost:8080/places?lat=${lat}&lng=${lng}&rad=${rad}`)
-            .then(function (response) {
-                setIds(response.data);
-                for(let x = 0; x<ids.length; x++){
-                    axios.get(`http://localhost:8080/place?place_id=${ids[x]}`)
-                        .then(secondResponse => {
-                            if(!places.includes(secondResponse.data.name)){
-                                places.push(secondResponse.data);
-                                setPlaces(places);
-                            }
-                        })
-                }
-            });
     const getPlaces = async (lat, lng, rad) => {
         setIsLoading(true);
         for(let y = places.length-1; y>=0; y--){
@@ -65,6 +61,7 @@ function UserPage() {
                 places.push(secondResponse.data);
                 setPlaces(places);
             }
+            PopulateMarkers(returnedIds);
             console.log(places);
         } catch {
 
@@ -100,9 +97,7 @@ function UserPage() {
                         horizontal: 'left',
                     }}
                 >
-                <MenuItem onClick={handleClose}>Saved Location</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleMenuClick}>Logout</MenuItem>
                 </Menu>
             </div>
             <div className="user-page-div">

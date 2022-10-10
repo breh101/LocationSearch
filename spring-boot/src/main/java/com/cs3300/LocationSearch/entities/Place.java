@@ -17,7 +17,7 @@ public class Place {
     @CrossOrigin
     @RequestMapping(value="/place", method = RequestMethod.GET, produces="application/json")
     public String getPlace(@RequestParam(value="place_id") String place_id) {
-        String key = "AIzaSyCeePqOFdkdcpqIwBzdgxsA9Y55WxVTXWI";
+        String key = "AIzaSyBxLjV86B7Y7lh-NB1dwk_JWy0mYz4MsQM";
 
         OkHttpClient client = new OkHttpClient();
         String api_url = String.format("https://maps.googleapis.com/maps/api/place/details/json?place_id=%s&key=%s", place_id, key);
