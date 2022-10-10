@@ -81,8 +81,8 @@ function LandingPage() {
             setValues({
                 ...values,
                 loginValid: false,
-                usernameError: (values.username.length == 0) ? "Empty username" : undefined,
-                passwordError: (values.password.length == 0) ? "Empty password" : undefined
+                usernameError: (values.username.length === 0) ? "Empty username" : undefined,
+                passwordError: (values.password.length === 0) ? "Empty password" : undefined
             });
         }
     }
@@ -92,7 +92,7 @@ function LandingPage() {
             axios.get(`http://localhost:8080/users/${values.username}`)
                 .then(function (response) {
                     console.log(response.data);
-                    if (response.data.length == 0) { // username does not exist
+                    if (response.data.length === 0) { // username does not exist
                         axios.post(`http://localhost:8080/create/?username=${values.username}&password=${values.password}`)
                             .then(function (response) {
                                 console.log(response.data);
@@ -115,8 +115,8 @@ function LandingPage() {
             setValues({
                 ...values,
                 loginValid: false,
-                usernameError: (values.username.length == 0) ? "Empty username" : undefined,
-                passwordError: (values.password.length == 0) ? "Empty password" : undefined
+                usernameError: (values.username.length === 0) ? "Empty username" : undefined,
+                passwordError: (values.password.length === 0) ? "Empty password" : undefined
             });
         }
     }
