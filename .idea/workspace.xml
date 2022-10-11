@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ff072bb-2f49-4a33-8371-c0b3532bd5ba" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_3_2022_12_53_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_3_2022_12_53_PM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="2ff072bb-2f49-4a33-8371-c0b3532bd5ba" name="Changes" comment="Merged Most Recent master with Sam">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react/location-search/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/react/location-search/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/location-search/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react/location-search/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react/location-search/src/MapContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/react/location-search/src/MapContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react/location-search/src/UserPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/react/location-search/src/UserPage.js" afterDir="false" />
     </list>
@@ -35,6 +29,9 @@
     </option>
   </component>
   <component name="ProjectId" id="2Fxw1VgtWPmDHgW5vXVI6DYAvcN" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -92,5 +89,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CS3300$LocationSearchApplication.ic" NAME="LocationSearchApplication Coverage Results" MODIFIED="1665441876914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.cs3300.LocationSearch.*</FILTER>
+    </SUITE>
   </component>
 </project>

@@ -62,7 +62,6 @@ function UserPage() {
                 setPlaces(places);
             }
             PopulateMarkers(places, lat, lng);
-            console.log(places);
         } catch {
 
         } finally {
