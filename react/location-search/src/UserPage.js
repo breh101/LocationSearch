@@ -61,7 +61,7 @@ function UserPage() {
                 places.push(secondResponse.data);
                 setPlaces(places);
             }
-            PopulateMarkers(returnedIds);
+            PopulateMarkers(places, lat, lng);
             console.log(places);
         } catch {
 
