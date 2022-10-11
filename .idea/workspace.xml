@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ff072bb-2f49-4a33-8371-c0b3532bd5ba" name="Changes" comment="Merged Most Recent master with Sam">
+    <list default="true" id="2ff072bb-2f49-4a33-8371-c0b3532bd5ba" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react/location-search/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/react/location-search/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react/location-search/src/MapContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/react/location-search/src/MapContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react/location-search/src/UserPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/react/location-search/src/UserPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
