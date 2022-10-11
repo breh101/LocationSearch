@@ -39,6 +39,7 @@ function UserPage() {
       switch (event.currentTarget.innerText) {
           case 'Logout':
             //logout
+              localStorage.setItem("token", null);
             navigate(-1);
             break;
           default:
@@ -147,8 +148,8 @@ function UserPage() {
                                     <TableCell align="right">Longitude</TableCell>
                                 </TableRow>
                             </TableHead>
-                            <TableBody>
-                                {places.length !== 0 ? places.map((place) => (
+                            {places.length !== 0 ?  places.map((place) => (
+                                <TableBody>
                                     <TableRow
                                         key={place.key}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -160,8 +161,8 @@ function UserPage() {
                                         <TableCell align="right">{place.location.lat}</TableCell>
                                         <TableCell align="right">{place.location.lng}</TableCell>
                                     </TableRow>
-                                )) : <Typography>No places found around the specified coordinates</Typography>}
-                            </TableBody>
+                                </TableBody> )) :
+                                <Typography>No places found around the specified coordinates</Typography>}
                         </Table>
                     </TableContainer>}
                 </Stack>
