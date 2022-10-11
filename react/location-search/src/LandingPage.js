@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import {Button, IconButton, InputAdornment, OutlinedInput, Stack, Typography, TextField} from "@mui/material";
+import {Button, IconButton, InputAdornment, Stack, Typography, TextField} from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import './LandingPageStyles.css';
@@ -43,7 +43,9 @@ function LandingPage() {
     const navigate = useNavigate();
 
     const navigateToLandingPageLogin = () => {
+        localStorage.setItem("token", "true");
         navigate("./user");
+        window.location.reload(false);
     }
 
     const handleLogin = () => {
@@ -85,6 +87,7 @@ function LandingPage() {
                 passwordError: (values.password.length === 0) ? "Empty password" : undefined
             });
         }
+        localStorage.setItem("token", null);
     }
 
     const handleSignUp = () => {
@@ -100,6 +103,7 @@ function LandingPage() {
                                     ...values,
                                     loginValid: true
                                 });
+                                localStorage.setItem("token", "true");
                                 navigateToLandingPageLogin();
                             })
                     } else {
@@ -119,6 +123,7 @@ function LandingPage() {
                 passwordError: (values.password.length === 0) ? "Empty password" : undefined
             });
         }
+        localStorage.setItem("token", null);
     }
 
     return (
