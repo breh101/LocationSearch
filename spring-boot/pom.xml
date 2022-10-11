@@ -10,10 +10,10 @@
 	</parent>
 	<groupId>com.cs3300</groupId>
 	<artifactId>LocationSearch</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<version>1</version>
 	<name>LocationSearch</name>
 	<description>CS3300 Project 1</description>
+	<packaging>jar</packaging>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
