@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import { GoogleMap, LoadScript, InfoWindow, MarkerF} from '@react-google-maps/api';
+import { GoogleMap, LoadScript, MarkerF} from '@react-google-maps/api';
 
 const markers = [];
 //First: First time where there is no user input
@@ -23,12 +23,12 @@ const MapContainer = () => {
         setCurrentPosition(currentPosition);
     };
 
-    if (first == true) {
+    if (first === true) {
         markers[0] = currentPosition;
     }
 
     useEffect(() => {
-        if (first == true) {
+        if (first === true) {
             navigator.geolocation.getCurrentPosition(success);
         }
     }, [])
@@ -41,7 +41,7 @@ const MapContainer = () => {
     function handleCenter() {
         if (!mapRef.current) return;
 
-        if (first == false) {
+        if (first === false) {
             const newPos = {lat: markers[0].lat, lng: markers[0].lng};
             setCurrentPosition(newPos);
         }
@@ -60,7 +60,6 @@ const MapContainer = () => {
         >
             {markers.map((marker) => (
                 <MarkerF
-                    key = {marker.name}
                     position = {{ lat:marker.lat, lng:marker.lng }}/>
             ))}
         </GoogleMap>

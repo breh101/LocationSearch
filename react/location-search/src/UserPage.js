@@ -67,6 +67,7 @@ function UserPage() {
 
         } finally {
             setIsLoading(false);
+            console.log(places);
         }
     }
 
@@ -79,6 +80,7 @@ function UserPage() {
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
                     onClick={handleClick}
+                    variant={"contained"}
                     >
                        Menu
                 </Button>
@@ -134,39 +136,42 @@ function UserPage() {
             </div>
             <div className={"bottom-half-div"}>
                 <Stack
-                    direction={"column"}
-                    spacing={2}
+                    direction={"row"}
+                    spacing={1}
                 >
-                    <Typography>Search results</Typography>
-                    {isLoading ? <Typography>Loading...</Typography> : <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell align="right">Address</TableCell>
-                                    <TableCell align="right">Name</TableCell>
-                                    <TableCell align="right">Latitude</TableCell>
-                                    <TableCell align="right">Longitude</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            {places.length !== 0 ?  places.map((place) => (
-                                <TableBody>
-                                    <TableRow
-                                        key={place.key}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                        <TableCell align="right">
-                                            {place.address}
-                                        </TableCell>
-                                        <TableCell align="right">{place.name}</TableCell>
-                                        <TableCell align="right">{place.location.lat}</TableCell>
-                                        <TableCell align="right">{place.location.lng}</TableCell>
+                    <Stack
+                        direction={"column"}
+                        spacing={2}
+                    >
+                        <Typography>Search results</Typography>
+                        {isLoading ? <Typography>Loading...</Typography> : <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 900 }} aria-label="simple table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell align="center">Address</TableCell>
+                                        <TableCell align="center">Name</TableCell>
+                                        <TableCell align="left">Phone</TableCell>
                                     </TableRow>
-                                </TableBody> )) :
-                                <Typography>No places found around the specified coordinates</Typography>}
-                        </Table>
-                    </TableContainer>}
+                                </TableHead>
+                                {places.length !== 0 ?  places.map((place) => (
+                                        <TableBody>
+                                            <TableRow
+                                                key={place.key}
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell align="right">
+                                                    {place.address}
+                                                </TableCell>
+                                                <TableCell align="center"><a href={place.url}>{place.name}</a></TableCell>
+                                                <TableCell align="left">{place.phone ? place.phone : "No # found"}</TableCell>
+                                            </TableRow>
+                                        </TableBody> )) :
+                                    <Typography>No places found around the specified coordinates</Typography>}
+                            </Table>
+                        </TableContainer>}
+                    </Stack>
+                    <MapContainer/>
                 </Stack>
-                <MapContainer/>
             </div>
         </div>
     );

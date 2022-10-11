@@ -15,7 +15,5 @@
 
 
 .bottom-half-div {
-    flex-direction: row;
-    display: flex;
-    margin: 5em;
+    margin: 3em;
 }
