@@ -1,5 +1,4 @@
 # LocationSearch
-CRUD API creation is here!
 
 ## GCP Deployment
 
@@ -42,3 +41,22 @@ $ gcloud app deploy frontend.yaml
 ```
 
 Now the app should be running at https://location-search-361515.ue.r.appspot.com.
+
+## Using the Application
+
+First create an user ID by clicking "Not a User?", fill out username and password, and proceed to sign in.
+If you already have a user ID, you can log in from the main page directly.
+
+After signing in, you will be presented with your current location in the latitude and longtitude text boxes,
+and your current location displayed on Google Map. You can then type the latitude, longitude and radius of the location
+you want to search. + is N - is S for latitude and +is East and - is West for longitude. The radius is in miles.
+If you input all the values, you can click find places to get your results.
+
+When you get your result, Google Maps will show the vicinity of your results. The results are seen in
+both the list on the left and markers on the right. For the list, the names of the location
+are hyperlinks to the respective Google Maps location so you can use that. The markers are also clickable and
+they show the name, address, and the Google Maps link to the location.
+
+When you are done with using the application, you can click "Menu" on the left top handside which will
+show a dropdown menu. Click the logout button from the menu and you will be able to log out.
+
