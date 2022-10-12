@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Button, OutlinedInput, Stack, Typography, Menu, MenuItem} from "@mui/material";
 import './UserPageStyles.css';
@@ -13,12 +13,24 @@ import Paper from '@mui/material/Paper';
 import { useNavigate } from "react-router-dom";
 
 function UserPage() {
-
     const [values, setValues] = React.useState({
         latitude: 0,
         longitude: 0,
         searchRadius: 0,
     });
+
+    const success = position => {
+        const values = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+            searchRadius: 0
+        }
+        setValues(values);
+    };
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(success);
+    }, []);
 
     const navigate = useNavigate();
 
