@@ -1,2 +1,3 @@
-runtime: java
+runtime: java17
 service: api
+entrypoint: java -jar LocationSearch-1.jar

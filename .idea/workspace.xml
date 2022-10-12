@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="2ff072bb-2f49-4a33-8371-c0b3532bd5ba" name="Changes" comment="Merged Most Recent master with Sam">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dispatch.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/dispatch.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/location-search/src/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/react/location-search/src/LandingPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/react/location-search/src/UserPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/react/location-search/src/UserPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot/src/main/appengine/backend.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot/src/main/appengine/backend.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot/src/main/java/com/cs3300/LocationSearch/controllers/Places.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot/src/main/java/com/cs3300/LocationSearch/controllers/Places.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,20 +38,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/GitHub/CS3300&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;12a9602cd0fee0880014675a60c9850d&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/GitHub/CS3300",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "spring.configuration.checksum": "12a9602cd0fee0880014675a60c9850d"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="LocationSearch" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <option name="ACTIVE_PROFILES" />

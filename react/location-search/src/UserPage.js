@@ -55,10 +55,10 @@ function UserPage() {
             places.pop();
         }
         try {
-            const response = await axios.get(`https://location-search-361515.ue.r.appspot.com/api/places?lat=${lat}&lng=${lng}&rad=${rad}`);
+            const response = await axios.get(`https://api-dot-location-search-361515.ue.r.appspot.com/api/places?lat=${lat}&lng=${lng}&rad=${rad}`);
             const returnedIds = response.data;
             for(let x = 0; x<returnedIds.length; x++){
-                const secondResponse = await axios.get(`https://location-search-361515.ue.r.appspot.com/api/place?place_id=${returnedIds[x]}`);
+                const secondResponse = await axios.get(`https://api-dot-location-search-361515.ue.r.appspot.com/api/place?place_id=${returnedIds[x]}`);
                 places.push(secondResponse.data);
                 setPlaces(places);
             }
