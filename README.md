@@ -3,7 +3,7 @@ CRUD API creation is here!
 
 ## GCP Deployment
 
-First create the JAR file of the Spring Boot Application using the following command in the directory `/spring-boot`
+First create the JAR file of the Spring Boot Application using the following command in the directory `/spring-boot/`
 
 ```
 $ mvn package
@@ -11,7 +11,7 @@ $ mvn package
 
 Then change all API request URLs to use https://api-dot-location-search-361515.ue.r.appspot.com.
 
-and then build the Node.js package using the following commands in the directory `/react/location-search`
+and then build the Node.js package using the following commands in the directory `/react/location-search/`
 
 ```
 $ npm install
@@ -21,7 +21,7 @@ $ npm run build
 Then we upload the following files/directories to our Cloud Shell in our GCP Project's App Engine.
 
 ```
-/react/location-search/build
+/react/location-search/build/
 /react/lcation-search/fontend.yaml
 /spring-boot/target/LocationSearch-1.jar
 /spring-boot/src/main/appengine/backend.yaml
