@@ -19,6 +19,7 @@ $ npm run build
 ```
 
 Then we upload the following files/directories to our Cloud Shell in our GCP Project's App Engine.
+Remember to first delete any of the files in the Cloud Shell that are already there before uploading.
 
 ```
 /react/location-search/build/
