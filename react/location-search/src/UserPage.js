@@ -115,7 +115,7 @@ function UserPage() {
             </div>
             <div className="user-page-div">
                 <Stack direction={"column"} spacing={2}>
-                    <Stack direction={"row"} spacing={24}>
+                    <Stack direction={"row"} spacing={13}>
                         <Typography>Latitude (in degrees)</Typography>
                         <Typography>Longitude (in degrees)</Typography>
                         <Typography>Search Radius (in miles)</Typography>
