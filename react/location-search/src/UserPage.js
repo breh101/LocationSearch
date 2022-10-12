@@ -55,10 +55,10 @@ function UserPage() {
             places.pop();
         }
         try {
-            const response = await axios.get(`http://localhost:8080/places?lat=${lat}&lng=${lng}&rad=${rad}`);
+            const response = await axios.get(`https://api-dot-location-search-361515.ue.r.appspot.com/api/places?lat=${lat}&lng=${lng}&rad=${rad}`);
             const returnedIds = response.data;
             for(let x = 0; x<returnedIds.length; x++){
-                const secondResponse = await axios.get(`http://localhost:8080/place?place_id=${returnedIds[x]}`);
+                const secondResponse = await axios.get(`https://api-dot-location-search-361515.ue.r.appspot.com/api/place?place_id=${returnedIds[x]}`);
                 places.push(secondResponse.data);
                 setPlaces(places);
             }
@@ -105,9 +105,9 @@ function UserPage() {
             <div className="user-page-div">
                 <Stack direction={"column"} spacing={2}>
                     <Stack direction={"row"} spacing={24}>
-                        <Typography>Latitude</Typography>
-                        <Typography>Longitude</Typography>
-                        <Typography>Search Radius</Typography>
+                        <Typography>Latitude (in degrees)</Typography>
+                        <Typography>Longitude (in degrees)</Typography>
+                        <Typography>Search Radius (in miles)</Typography>
                     </Stack>
                     <Stack direction={"row"} spacing={4}>
                         <OutlinedInput

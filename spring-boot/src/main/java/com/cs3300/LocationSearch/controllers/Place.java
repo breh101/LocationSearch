@@ -1,4 +1,4 @@
-package com.cs3300.LocationSearch.entities;
+package com.cs3300.LocationSearch.controllers;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ import java.io.IOException;
 @RestController
 public class Place {
     @CrossOrigin
-    @RequestMapping(value="/place", method = RequestMethod.GET, produces="application/json")
+    @RequestMapping(value="/api/place", method = RequestMethod.GET, produces="application/json")
     public String getPlace(@RequestParam(value="place_id") String place_id) {
         String key = "AIzaSyBxLjV86B7Y7lh-NB1dwk_JWy0mYz4MsQM";
 
