@@ -50,10 +50,10 @@ function LandingPage() {
 
     const handleLogin = () => {
         if (values.username.length > 0 && values.password.length > 0) {
-            axios.get(`https://api-dot-location-search-361515.ue.r.appspot.com/api/users/${values.username}`)
+            axios.get(`http://localhost:8080/api/users/${values.username}`)
                 .then(function (response) {
                     if (response.data.length > 0) { // username exists
-                        axios.get(`https://api-dot-location-search-361515.ue.r.appspot.com/api/match/?username=${values.username}&password=${values.password}`)
+                        axios.get(`http://localhost:8080/api/match/?username=${values.username}&password=${values.password}`)
                             .then(function (response) {
                                 if (response.data) { // password matches
                                     setValues({
