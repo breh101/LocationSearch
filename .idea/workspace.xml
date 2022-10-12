@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ff072bb-2f49-4a33-8371-c0b3532bd5ba" name="Changes" comment="">
+    <list default="true" id="2ff072bb-2f49-4a33-8371-c0b3532bd5ba" name="Changes" comment="Merged Most Recent master with Sam">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dispatch.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/dispatch.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/location-search/src/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/react/location-search/src/LandingPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react/location-search/src/UserPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/react/location-search/src/UserPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-boot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot/src/main/appengine/backend.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot/src/main/appengine/backend.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot/src/main/java/com/cs3300/LocationSearch/controllers/Places.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot/src/main/java/com/cs3300/LocationSearch/controllers/Places.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +51,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;E:/GitHub/CS3300&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;12a9602cd0fee0880014675a60c9850d&quot;
   }
 }</component>
@@ -88,6 +94,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Merged Most Recent master with Sam" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merged Most Recent master with Sam" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CS3300$LocationSearchApplication.ic" NAME="LocationSearchApplication Coverage Results" MODIFIED="1665441876914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

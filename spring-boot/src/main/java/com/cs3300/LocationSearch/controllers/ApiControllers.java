@@ -17,21 +17,21 @@ public class ApiControllers {
     UserRepo userRepo;
 
     @CrossOrigin
-    @GetMapping(value = "/")
+    @GetMapping(value = "/api/")
     public String getPage() {
         return "Welcome";
     }
 
     //get/read method
     @CrossOrigin
-    @GetMapping(value = "/users")
+    @GetMapping(value = "/api/users")
     public List<User> getUsers() {
         return userRepo.findAll();
     }
 
     //get by id method
     @CrossOrigin
-    @GetMapping("/users/{username}")
+    @GetMapping("/api/users/{username}")
     public String getUserByUsername(@PathVariable String username) {
         try {
             User user = userRepo.findById(User.getIdFromUsername(username)).get();
@@ -43,7 +43,7 @@ public class ApiControllers {
 
     //post/create method
     @CrossOrigin
-    @PostMapping(value = "/create")
+    @PostMapping(value = "/api/create")
     public String createUser(@RequestParam String username, @RequestParam(defaultValue = "") String firstName,
     @RequestParam(defaultValue = "") String lastName, @RequestParam String password) {
         User toSave = new User(username, firstName, lastName, password);
@@ -53,7 +53,7 @@ public class ApiControllers {
 
     //delete method
     @CrossOrigin
-    @DeleteMapping("/delete/{username}")
+    @DeleteMapping("/api/delete/{username}")
     public String deleteUser(@PathVariable String username) {
         User deleteUser = userRepo.findById(User.getIdFromUsername(username)).get();
         userRepo.delete(deleteUser);
@@ -62,7 +62,7 @@ public class ApiControllers {
 
     //update/put method
     @CrossOrigin
-    @PutMapping(value = "/update/{username}")
+    @PutMapping(value = "/api/update/{username}")
     public String updateUser(@RequestBody User user, @PathVariable String username) {
         User updatedUser = userRepo.findById(User.getIdFromUsername(username)).get();
         updatedUser.setPassword(user.getPassword());
@@ -71,7 +71,7 @@ public class ApiControllers {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/match/")
+    @GetMapping(value = "/api/match/")
     public boolean matchUser(@RequestParam String username, @RequestParam String password) {
         try {
             User user = userRepo.findById(User.getIdFromUsername(username)).get();

@@ -55,10 +55,10 @@ function UserPage() {
             places.pop();
         }
         try {
-            const response = await axios.get(`http://localhost:8080/places?lat=${lat}&lng=${lng}&rad=${rad}`);
+            const response = await axios.get(`https://api-dot-location-search-361515.ue.r.appspot.com/api/places?lat=${lat}&lng=${lng}&rad=${rad}`);
             const returnedIds = response.data;
             for(let x = 0; x<returnedIds.length; x++){
-                const secondResponse = await axios.get(`http://localhost:8080/place?place_id=${returnedIds[x]}`);
+                const secondResponse = await axios.get(`https://api-dot-location-search-361515.ue.r.appspot.com/api/place?place_id=${returnedIds[x]}`);
                 places.push(secondResponse.data);
                 setPlaces(places);
             }
@@ -67,6 +67,7 @@ function UserPage() {
 
         } finally {
             setIsLoading(false);
+            console.log(places);
         }
     }
 
@@ -79,6 +80,7 @@ function UserPage() {
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
                     onClick={handleClick}
+                    variant={"contained"}
                     >
                        Menu
                 </Button>
@@ -103,9 +105,9 @@ function UserPage() {
             <div className="user-page-div">
                 <Stack direction={"column"} spacing={2}>
                     <Stack direction={"row"} spacing={24}>
-                        <Typography>Latitude</Typography>
-                        <Typography>Longitude</Typography>
-                        <Typography>Search Radius</Typography>
+                        <Typography>Latitude (in degrees)</Typography>
+                        <Typography>Longitude (in degrees)</Typography>
+                        <Typography>Search Radius (in miles)</Typography>
                     </Stack>
                     <Stack direction={"row"} spacing={4}>
                         <OutlinedInput
@@ -134,39 +136,42 @@ function UserPage() {
             </div>
             <div className={"bottom-half-div"}>
                 <Stack
-                    direction={"column"}
-                    spacing={2}
+                    direction={"row"}
+                    spacing={1}
                 >
-                    <Typography>Search results</Typography>
-                    {isLoading ? <Typography>Loading...</Typography> : <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell align="right">Address</TableCell>
-                                    <TableCell align="right">Name</TableCell>
-                                    <TableCell align="right">Latitude</TableCell>
-                                    <TableCell align="right">Longitude</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            {places.length !== 0 ?  places.map((place) => (
-                                <TableBody>
-                                    <TableRow
-                                        key={place.key}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                        <TableCell align="right">
-                                            {place.address}
-                                        </TableCell>
-                                        <TableCell align="right">{place.name}</TableCell>
-                                        <TableCell align="right">{place.location.lat}</TableCell>
-                                        <TableCell align="right">{place.location.lng}</TableCell>
+                    <Stack
+                        direction={"column"}
+                        spacing={2}
+                    >
+                        <Typography>Search results</Typography>
+                        {isLoading ? <Typography>Loading...</Typography> : <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 900 }} aria-label="simple table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell align="center">Address</TableCell>
+                                        <TableCell align="center">Name</TableCell>
+                                        <TableCell align="left">Phone</TableCell>
                                     </TableRow>
-                                </TableBody> )) :
-                                <Typography>No places found around the specified coordinates</Typography>}
-                        </Table>
-                    </TableContainer>}
+                                </TableHead>
+                                {places.length !== 0 ?  places.map((place) => (
+                                        <TableBody>
+                                            <TableRow
+                                                key={place.key}
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell align="right">
+                                                    {place.address}
+                                                </TableCell>
+                                                <TableCell align="center"><a href={place.url}>{place.name}</a></TableCell>
+                                                <TableCell align="left">{place.phone ? place.phone : "No # found"}</TableCell>
+                                            </TableRow>
+                                        </TableBody> )) :
+                                    <Typography>No places found around the specified coordinates</Typography>}
+                            </Table>
+                        </TableContainer>}
+                    </Stack>
+                    <MapContainer/>
                 </Stack>
-                <MapContainer/>
             </div>
         </div>
     );
