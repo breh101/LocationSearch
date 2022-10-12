@@ -74,12 +74,11 @@ function UserPage() {
                 places.push(secondResponse.data);
                 setPlaces(places);
             }
-            PopulateMarkers(places, lat, lng);
+            PopulateMarkers(places);
         } catch {
 
         } finally {
             setIsLoading(false);
-            console.log(places);
         }
     }
 
@@ -174,7 +173,8 @@ function UserPage() {
                                                 <TableCell align="right">
                                                     {place.address}
                                                 </TableCell>
-                                                <TableCell align="center"><a href={place.url}>{place.name}</a></TableCell>
+                                                <TableCell align="center"><a href={place.url} target="_blank"
+                                                                             rel="noopener noreferrer">{place.name}</a></TableCell>
                                                 <TableCell align="left">{place.phone ? place.phone : "No # found"}</TableCell>
                                             </TableRow>
                                         </TableBody> )) :
