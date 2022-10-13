@@ -42,6 +42,36 @@ $ gcloud app deploy frontend.yaml
 
 Now the app should be running at https://location-search-361515.ue.r.appspot.com.
 
+## Application File Hierarchy
+
+Frontend is under "react/location-search" and Backend is under "spring-boot".
+
+react/location-search/src/:
+* App.js: Code related to linking pages
+* LandingPage.js: Code in charge of the first landing page with the login
+* LandingPageStyles.css: CSS for LandingPage
+* MapContainer.js: Code related to Google Map implementation
+* UserPage.js: Code related to the userpage with the main map search functionality
+* UserPageStyles.css: CSS for UserPage
+* index.js: Root start of all the codes
+* index.css: CSS for index.js
+* reportWebVitals.js: Code for testing performance
+* setupTests.js: Code for jest tests for DOM
+
+spring-boot/src/main/java/com/cs3300/LocationSearch/controllers/:
+* ApiControllers.java: Custom APIs for user handling
+* Place.java: Custom APIs for single Google Map result
+* Places.java: Custom APIs for a list of Google Map results based on location
+
+spring-boot/src/main/java/com/cs3300/LocationSearch/entities/
+* User.java: Code for handling users in backend
+
+spring-boot/src/main/java/com/cs3300/LocationSearch/Repo/
+* UserRepo.java: Code for DB
+
+spring-boot/src/test/java/com/cs3300/LocationSearch/
+* Contains unit testing on the backend
+
 ## Using the Application
 
 First create an user ID by clicking "Not a User?", fill out username and password, and proceed to sign in.
