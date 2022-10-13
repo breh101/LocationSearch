@@ -46,7 +46,7 @@ Now the app should be running at https://location-search-361515.ue.r.appspot.com
 
 Frontend is under "react/location-search" and Backend is under "spring-boot".
 
-react/location-search/src/:
+`react/location-search/src/`:
 * App.js: Code related to linking pages
 * LandingPage.js: Code in charge of the first landing page with the login
 * LandingPageStyles.css: CSS for LandingPage
@@ -58,18 +58,18 @@ react/location-search/src/:
 * reportWebVitals.js: Code for testing performance
 * setupTests.js: Code for jest tests for DOM
 
-spring-boot/src/main/java/com/cs3300/LocationSearch/controllers/:
+`spring-boot/src/main/java/com/cs3300/LocationSearch/controllers/`:
 * ApiControllers.java: Custom APIs for user handling
 * Place.java: Custom APIs for single Google Map result
 * Places.java: Custom APIs for a list of Google Map results based on location
 
-spring-boot/src/main/java/com/cs3300/LocationSearch/entities/
+`spring-boot/src/main/java/com/cs3300/LocationSearch/entities/`
 * User.java: Code for handling users in backend
 
-spring-boot/src/main/java/com/cs3300/LocationSearch/Repo/
+`spring-boot/src/main/java/com/cs3300/LocationSearch/Repo/`
 * UserRepo.java: Code for DB
 
-spring-boot/src/test/java/com/cs3300/LocationSearch/
+`spring-boot/src/test/java/com/cs3300/LocationSearch/`
 * Contains unit testing on the backend
 
 ## Using the Application
